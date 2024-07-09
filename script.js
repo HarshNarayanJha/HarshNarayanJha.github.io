@@ -5,10 +5,31 @@ const cursorScale = document.querySelectorAll(".cursor-scale");
 const cursorButton = document.querySelectorAll(".cursor-button");
 const cursorLink = document.querySelectorAll(".cursor-link");
 
+const settingsButton = document.querySelector("#settings-icon");
+const settingsDropdown = document.querySelector(".settings-dropdown");
+settingsButton.addEventListener("click", () => {
+    settingsDropdown.classList.toggle("show");
+})
+
 // const svgCircuit = document.querySelector("#circuit");
 
 var posX = 0;
 var posY = 0;
+
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Control") {
+        document.body.style.cursor = "unset";
+        document.querySelector(".cursor-link").style.cursor = "unset";
+        document.querySelector(".cursor-outline").style.opacity = 0;
+    }
+})
+
+window.addEventListener("keyup", (e) => {
+    if (e.key === "Control") {
+        document.body.style.cursor = "none";
+        document.querySelector(".cursor-outline").style.opacity = 1;
+    }
+})
 
 window.addEventListener("mousemove", (e) => {
     posX = e.clientX;
@@ -72,7 +93,10 @@ cursorLink.forEach(link => {
         const offsetX = e.clientX - link.getBoundingClientRect().x - link.getBoundingClientRect().height / 2;
         const offsetY = e.clientY - link.getBoundingClientRect().y - link.getBoundingClientRect().width / 2;
 
-        link.style.transform = `scale(0.9) translate(${offsetX}%, ${offsetY}%)`;
+        // offsetX = offsetX / 1.0;
+        // offsetY = offsetY / 1.0;
+
+        link.style.transform = `scale(0.9) translate(${offsetX / 1.5}%, ${offsetY / 1.5}%)`;
     })
 })
 
