@@ -1,0 +1,39 @@
+/* I did not want to write this css, but if you really want a light mode, I WILL blind you with this light mode */
+
+/* Light mode overrides */
+
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --hero-gold-color: rgba(233, 223, 132, 0.63);
+
+  .hero-text h1 {
+    background-image: linear-gradient(132deg, var(--hero-gold-color) 0%, var(--pico-h3-color) 40%, var(--pico-h1-color) 100%);
+  }
+
+  .cursor-outline {
+    mix-blend-mode: hard-light;
+  }
+
+  .cursor-grow,
+  .grow-small {
+    mix-blend-mode: soft-light;
+  }
+
+  .text-extra-muted {
+    color: var(--pico-color-zinc-200) !important;
+  }
+
+  .cursor-outline.cursor-text,
+  .cursor-outline.cursor-text-small {
+    mix-blend-mode: normal;
+  }
+}
+
+/* html[data-theme="light"] .hero-text h1 {
+    background-color: #dadada;
+    background-image: linear-gradient(132deg, rgba(230, 215, 109, 0.301) 0%, #303030 35%, #000000 100%);
+    background-clip: text;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+} */

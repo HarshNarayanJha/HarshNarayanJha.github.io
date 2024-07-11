@@ -1,20 +1,56 @@
 const cursorDot = document.querySelector("[data-cursor-dot]");
 const cursorOutline = document.querySelector("[data-cursor-outline]");
 
-const cursorScale = document.querySelectorAll(".cursor-scale");
-const cursorButton = document.querySelectorAll(".cursor-button");
-const cursorLink = document.querySelectorAll(".cursor-link");
+// Thinks which react to cursor
+const scaleCursorElems = document.querySelectorAll(".scale-cursor");
+const buttonCursorElems = document.querySelectorAll(".button-cursor");
+const linkCursorElems = document.querySelectorAll(".link-cursor");
+const textCursorElems = document.querySelectorAll(".text-cursor");
 
 const settingsButton = document.querySelector("#settings-icon");
 const settingsDropdown = document.querySelector(".settings-dropdown");
+
+const darkModeSwitch = settingsDropdown.querySelector("input[name='dark-mode']");
+
 settingsButton.addEventListener("click", () => {
     settingsDropdown.classList.toggle("show");
 })
 
 // const svgCircuit = document.querySelector("#circuit");
 
-var posX = 0;
-var posY = 0;
+const setDarkMode = on => {
+    if (on) {
+        document.querySelector("html").dataset.theme = "dark";
+        darkModeSwitch.checked = true;
+    } else {
+        document.querySelector("html").dataset.theme = "light";
+        darkModeSwitch.checked = false;
+    }
+}
+
+const toggleDarkMode = () => {
+    if (document.querySelector("html").dataset.theme == "dark") {
+        setDarkMode(false);
+    } else {
+        setDarkMode(true);
+    }
+}
+
+// Dark Light Mode Shortcut
+window.addEventListener("keydown", (e) => {
+    if (e.shiftKey && e.key === "D") {
+        if (e.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+        }
+
+        toggleDarkMode();
+    }
+})
+
+darkModeSwitch.addEventListener("change", (e) => {
+    const darkModeOn = e.target.checked;
+    setDarkMode(darkModeOn);
+});
 
 window.addEventListener("keydown", (e) => {
     if (e.key === "Control") {
@@ -30,6 +66,9 @@ window.addEventListener("keyup", (e) => {
         document.querySelector(".cursor-outline").style.opacity = 1;
     }
 })
+
+var posX = 0;
+var posY = 0;
 
 window.addEventListener("mousemove", (e) => {
     posX = e.clientX;
@@ -56,16 +95,22 @@ gsap.to({}, 0.016, {
                 left: posX,
                 top: posY,
             }
-        })
+        });
+        gsap.set(cursorDot, {
+            css: {
+                left: posX,
+                top: posY,
+            }
+        });
     }
 });
 
-cursorScale.forEach(scaled => {
+scaleCursorElems.forEach(scaled => {
     scaled.addEventListener("mouseleave", (e) => {
         cursorOutline.classList.remove("cursor-grow");
         cursorOutline.classList.remove('grow-small');
     })
-    scaled.addEventListener("mousemove", (e) => {
+    scaled.addEventListener("mouseenter", (e) => {
         cursorOutline.classList.add("cursor-grow");
         if (scaled.classList.contains("small")) {
             cursorOutline.classList.remove("cursor-grow");
@@ -74,44 +119,46 @@ cursorScale.forEach(scaled => {
     })
 })
 
-cursorLink.forEach(link => {
+textCursorElems.forEach(text => {
+    text.addEventListener("mouseleave", (e) => {
+        cursorOutline.classList.remove("cursor-text");
+        cursorOutline.classList.remove("cursor-text-small");
+    })
+    text.addEventListener("mouseenter", (e) => {
+        cursorOutline.classList.add("cursor-text");
+        if (text.classList.contains("small")) {
+            cursorOutline.classList.remove("cursor-text");
+            cursorOutline.classList.add('cursor-text-small');
+        }
+    })
+})
+
+linkCursorElems.forEach(link => {
     link.addEventListener("mouseleave", (e) => {
         cursorOutline.classList.remove("cursor-glow");
-        link.classList.remove("cursor-glow");
+        link.classList.remove("text-glow");
         link.style.transform = `translate(0px, 0px)`;
         // cursorOutline.classList.remove('shrink-small');
     })
     link.addEventListener("mousemove", (e) => {
         cursorOutline.classList.add("cursor-glow");
-        link.classList.add("cursor-glow");
-        // if (scaled.classList.contains("small")) {
-        // cursorOutline.classList.remove("cursor-grow");
-        // cursorOutline.classList.add('grow-small');
-        // }
+        link.classList.add("text-glow");
 
-        // console.log(e.clientX, e.clientY, posX, posY);
         const offsetX = e.clientX - link.getBoundingClientRect().x - link.getBoundingClientRect().height / 2;
         const offsetY = e.clientY - link.getBoundingClientRect().y - link.getBoundingClientRect().width / 2;
-
-        // offsetX = offsetX / 1.0;
-        // offsetY = offsetY / 1.0;
 
         link.style.transform = `scale(0.9) translate(${offsetX / 1.5}%, ${offsetY / 1.5}%)`;
     })
 })
 
-cursorButton.forEach(buttoned => {
+buttonCursorElems.forEach(buttoned => {
     buttoned.addEventListener("mouseleave", (e) => {
         cursorOutline.classList.remove("cursor-wrap");
-        buttoned.classList.remove("cursor-glow");
-        // cursorOutline.classList.remove('shrink-small');
+        buttoned.classList.remove("text-glow");
     })
-    buttoned.addEventListener("mousemove", (e) => {
+    buttoned.addEventListener("mouseenter", (e) => {
         cursorOutline.classList.add("cursor-wrap");
-        buttoned.classList.add("cursor-glow");
-        // if (scaled.classList.contains("small")) {
-        // cursorOutline.classList.remove("cursor-grow");
-        // cursorOutline.classList.add('grow-small');
+        buttoned.classList.add("text-glow");
         // }
     })
 })

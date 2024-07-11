@@ -1,0 +1,248 @@
+/***************/
+/* Base Styles */
+/***************/
+
+:root {
+  --svg-color: #00000000;
+  --hero-gold-color: rgba(100, 94, 44, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  transition: all 0.1s ease-out;
+}
+
+body {
+  min-height: 100vh;
+  cursor: none;
+
+  animation: welcome 0.4s ease-out;
+  -webkit-animation: welcome 0.4s ease-out;
+  -moz-animation: welcome 0.4s ease-out;
+}
+
+section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-margin-top: 150px;
+}
+
+footer>section {
+  min-height: 0;
+  scroll-snap-align: end;
+  scroll-margin-bottom: 75px;
+}
+
+a {
+  cursor: none;
+}
+
+input[type='checkbox'] {
+  cursor: none;
+}
+
+/**********/
+/* Header */
+/**********/
+
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: var(--pico-contrast-inverse);
+  background: -moz-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, rgba(var(--pico-contrast-inverse), 0.8) 50%, transparent 100%);
+  background: -webkit-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
+}
+
+div.settings-dropdown {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 50%);
+  background: var(--pico-contrast-inverse);
+  background: -moz-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, rgba(var(--pico-contrast-inverse), 0.8) 50%, transparent 100%);
+  background: -webkit-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
+  box-shadow: var(--pico-box-shadow);
+  max-width: 500px;
+  max-height: 400px;
+  padding: 20px;
+  border: 1px solid var(--pico-dropdown-border-color);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+div.settings-dropdown.show {
+  display: block;
+}
+
+/********/
+/* Hero */
+/********/
+
+.hero-text {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.hero-text h1 {
+  margin-top: 25px;
+  font-size: 4rem;
+  font-weight: 700;
+  /* background-color: #333333; */
+  background-image: linear-gradient(132deg, var(--hero-gold-color) 0%, var(--pico-contrast) 35%, var(--pico-contrast-hover) 100%);
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-text h2 {
+  font-size: 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/**********/
+/* Cursor */
+/**********/
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  /* background-color: var(--pico-contrast); */
+}
+
+.cursor-outline {
+  width: 30px;
+  height: 30px;
+  /* border: 2px solid #ffffff80; */
+  border: 2px solid color-mix(in srgb, var(--pico-contrast-hover-background), transparent 30%);
+  /* background-color: #ffffff60; */
+  background-color: color-mix(in srgb, var(--pico-contrast-hover-background), transparent 50%);
+  /* transition: all 0.5s ease; */
+  transition: transform 0.1s ease-out;
+  transition-property: background-color, width, height, transform, opacity, border, border-color;
+  transition-duration: 0.05s;
+  transition-timing-function: ease-out;
+  mix-blend-mode: soft-light;
+}
+
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: -100px;
+  left: -100px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 100;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.cursor-outline.cursor-grow,
+.cursor-outline.grow-small {
+  transform: scale(5);
+  background-color: var(--pico-contrast-hover);
+  border: none;
+}
+
+.cursor-outline.grow-small {
+  transform: scale(2.5);
+}
+
+.cursor-outline.cursor-glow {
+  background-color: transparent;
+  border: none;
+}
+
+.cursor-outline.cursor-wrap {
+  background-color: transparent;
+  border: none;
+  color: var(--pico-contrast-hover);
+}
+
+.cursor-outline.cursor-text,
+.cursor-outline.cursor-text-small {
+  border-radius: 0px;
+  height: 50px;
+  width: 20px;
+  background-color: var(--pico-contrast-hover);
+  border: none;
+  mix-blend-mode: exclusion;
+}
+
+.cursor-outline.cursor-text-small {
+  height: 30px;
+  width: 10px;
+}
+
+/***************/
+/* animate.css */
+/***************/
+
+/*************/
+/* Utilities */
+/*************/
+
+.text-glow {
+  color: var(--pico-contrast-hover);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--pico-muted-color) !important;
+}
+
+.text-extra-muted {
+  color: var(--pico-color-zinc-800) !important;
+}
+
+/* Things which react to cursor */
+
+.link-cursor {
+  cursor: none;
+  transition: all 0.2s ease;
+}
+
+.button-cursor {
+  cursor: none;
+  transition: all 0.2s ease;
+}
+
+.text-cursor {
+  cursor: none;
+  transition: all 0.2s ease;
+}
+
+/*************/
+/* Keyframes */
+/*************/
+
+@keyframes welcome {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
