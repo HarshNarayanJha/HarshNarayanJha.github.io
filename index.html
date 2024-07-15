@@ -22,10 +22,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
     <link rel="manifest" href="icons/site.webmanifest" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   </head>
 
   <body>
@@ -126,7 +125,7 @@
           <li><i class="bx bxl-github bx-sm text-extra-muted"></i></li>
         </ul>
         <ul>
-          <li><strong class="text-cursor small" aria-label="Website Like">harshnj.is-a.dev</strong></li>
+          <li><strong id="nav-brand" class="text-cursor small" aria-label="Website Link">harshnj.is-a.dev</strong></li>
         </ul>
         <ul>
           <li>
@@ -184,13 +183,41 @@
         <article class="card-hello">
           <h1 class="text-cursor">Hello 👋</h1>
           <p class="text-cursor small">This is my personal website aka portfolio, which is WIP 🚧</p>
-          <p class="text-cursor small">As of now you can see Scroll Snapping if you scroll down! And try to wiggle the links on the top right!</p>
+          <p class="text-cursor small">As of now you can see Scroll Animations if you scroll down (and up)! And try to wiggle the links on the top right!</p>
         </article>
       </section>
 
       <section id="section-education">
         <h1 class="text-cursor">Education 🎓</h1>
-        <h4 class="text-cursor small">When I didn't know coding</h4>
+        <div class="educations">
+          <article class="card-full card-past">
+            <h1 class="text-cursor">Where All Started</h1>
+          </article>
+          <article class="card-full">
+            <h1 class="text-cursor">Rose Public School</h1>
+            <p class="text-muted">Laheriasarai, Darbhanga</p>
+            <span><i>some year</i> to 2015</span>
+          </article>
+          <article class="card-full">
+            <h1 class="text-cursor">Kendriya Vidyalaya</h1>
+            <p class="text-muted">No. 1 AFS Darbhanga</p>
+            <span>2016 to 2023</span>
+          </article>
+          <article class="card-full card-now">
+            <h1 class="text-cursor">Now</h1>
+          </article>
+          <article class="card-full">
+            <h1 class="text-cursor">Birla Institute of Technology</h1>
+            <p class="text-muted">Deoghar</p>
+            <span>2023 to 2027</span>
+          </article>
+          <article class="card-full">
+            <h1 class="text-cursor">Somewhere in this universe</h1>
+            <p class="text-muted">somewhere</p>
+            <span>2027 to <i>some year</i></span>
+          </article>
+        </div>
+        <!-- <h4 class="text-cursor small">When I didn't know coding</h4>
         <ul>
           <li class="text-cursor small">Rose Public School, Darbhanga <i>(From when I can recall things - 2015, 4th standard)</i></li>
           <li class="text-cursor small">Kendriya Vidyalaya AFS Darbhanga <i>(2016, 6th Standard - 2018, 8th Standard)</i></li>
@@ -209,7 +236,7 @@
         <h4 class="text-cursor">Then</h4>
         <ul>
           <li class="text-cursor">Who knows... 🤷</li>
-        </ul>
+        </ul> -->
       </section>
 
       <section id="section-project">
@@ -260,23 +287,22 @@
     <script src="./animations.js"></script>
 
     <script>
-
       // lenis smooth scroll
-      const lenis = new Lenis()
+      const lenis = new Lenis();
 
-      lenis.on('scroll', (e) => {
-        console.log(e)
-      })
+      lenis.on("scroll", (e) => {
+        console.log(e);
+      });
 
       function raf(time) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
+        lenis.raf(time);
+        requestAnimationFrame(raf);
       }
 
-      requestAnimationFrame(raf)
+      requestAnimationFrame(raf);
 
       // Gsap
-      gsap.registerPlugin(ScrollTrigger)
+      gsap.registerPlugin(ScrollTrigger);
 
       // Date and Clock
       const datetime = document.querySelector(".datetime");
