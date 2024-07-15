@@ -16,12 +16,12 @@
 }
 
 html {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y none;
   transition: all 0.1s ease-out;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100svh;
   cursor: none;
 
   animation: welcome 0.4s ease-out;
@@ -30,12 +30,12 @@ body {
 }
 
 section {
-  min-height: 100vh;
+  min-height: 100svh;
   scroll-snap-align: start;
   scroll-margin-top: 150px;
 }
 
-footer>section {
+footer > section {
   min-height: 0;
   scroll-snap-align: end;
   scroll-margin-bottom: 75px;
@@ -45,7 +45,7 @@ a {
   cursor: none;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   cursor: none;
 }
 
@@ -60,9 +60,10 @@ input[type='checkbox'] {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background: var(--pico-contrast-inverse);
-  background: -moz-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, rgba(var(--pico-contrast-inverse), 0.8) 50%, transparent 100%);
-  background: -webkit-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
-  background: linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
+  --nav-bar-gradient: 180deg, var(--pico-contrast-inverse) 0%, color-mix(in srgb, var(--pico-contrast-inverse) 75%, transparent) 50%, transparent 100%;
+  background: -moz-linear-gradient(var(--nav-bar-gradient));
+  background: -webkit-linear-gradient(var(--nav-bar-gradient));
+  background: linear-gradient(var(--nav-bar-gradient));
 }
 
 div.settings-dropdown {
@@ -72,9 +73,10 @@ div.settings-dropdown {
   right: 0;
   transform: translate(-50%, 50%);
   background: var(--pico-contrast-inverse);
-  background: -moz-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, rgba(var(--pico-contrast-inverse), 0.8) 50%, transparent 100%);
-  background: -webkit-linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
-  background: linear-gradient(180deg, var(--pico-contrast-inverse) 0%, transparent 100%);
+  --settings-dropdown-gradient: 180deg, var(--pico-contrast-inverse) 0%, color-mix(in srgb, var(--pico-contrast-inverse) 20%, transparent) 50%, transparent 100%;
+  background: -moz-linear-gradient(var(--settings-dropdown-gradient));
+  background: -webkit-linear-gradient(var(--settings-dropdown-gradient));
+  background: linear-gradient(var(--settings-dropdown-gradient));
   box-shadow: var(--pico-box-shadow);
   max-width: 500px;
   max-height: 400px;
@@ -103,6 +105,7 @@ div.settings-dropdown.show {
 
 .hero-text h1 {
   margin-top: 25px;
+  padding-top: 10px;
   font-size: 4rem;
   font-weight: 700;
   /* background-color: #333333; */
@@ -214,6 +217,14 @@ div.settings-dropdown.show {
 
 .text-extra-muted {
   color: var(--pico-color-zinc-800) !important;
+}
+
+.text-game {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
 }
 
 /* Things which react to cursor */
