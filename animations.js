@@ -1,4 +1,4 @@
-const mainTimeline = gsap.timeline({duration: 1})
+const mainTimeline = gsap.timeline({ duration: 1 })
 
 mainTimeline.from("li i.bx", {
   scale: "0",
@@ -34,7 +34,7 @@ const educations = document.querySelector("div.educations")
 
 function getEducationScrollAmount() {
   let educationsWidth = educations.scrollWidth
-  return -(educationsWidth - window.innerWidth)
+  return -(educationsWidth - window.innerWidth / 1.3)
 }
 
 const educationsAnimation = gsap.to(educations, {

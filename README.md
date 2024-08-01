@@ -1,2 +1,2 @@
 # HarshNarayanJha.github.io
-Files for my GitHub website
+Files for my Personal Website

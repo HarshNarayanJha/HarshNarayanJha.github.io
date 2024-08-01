@@ -5,9 +5,12 @@
 :root {
   --svg-color: #00000000;
   --hero-gold-color: rgba(100, 94, 44, 0.5);
+  --card-hover-color: rgba(255, 255, 255, 0.1);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -52,6 +55,28 @@ input[type="checkbox"] {
   cursor: none;
 }
 
+article {
+  position: relative;
+}
+
+article:hover::before {
+  opacity: 1;
+}
+
+article::before {
+  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), var(--card-hover-color), transparent 40%);
+  border-radius: inherit;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 500ms;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+
 /**********/
 /* Header */
 /**********/
@@ -64,7 +89,8 @@ input[type="checkbox"] {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background: var(--pico-contrast-inverse);
-  --nav-bar-gradient: 180deg, var(--pico-contrast-inverse) 0%, color-mix(in srgb, var(--pico-contrast-inverse) 75%, transparent) 50%, transparent 100%;
+  --nav-bar-gradient: 180deg, var(--pico-contrast-inverse) 0%,
+    color-mix(in srgb, var(--pico-contrast-inverse) 75%, transparent) 50%, transparent 100%;
   background: -moz-linear-gradient(var(--nav-bar-gradient));
   background: -webkit-linear-gradient(var(--nav-bar-gradient));
   background: linear-gradient(var(--nav-bar-gradient));
@@ -77,8 +103,8 @@ div.settings-dropdown {
   right: 0;
   transform: translate(-50%, 50%);
   background: var(--pico-contrast-inverse);
-  --settings-dropdown-gradient: 180deg, var(--pico-contrast-inverse) 0%, color-mix(in srgb, var(--pico-contrast-inverse) 20%, transparent) 50%,
-    transparent 100%;
+  --settings-dropdown-gradient: 180deg, var(--pico-contrast-inverse) 0%,
+    color-mix(in srgb, var(--pico-contrast-inverse) 20%, transparent) 50%, transparent 100%;
   background: -moz-linear-gradient(var(--settings-dropdown-gradient));
   background: -webkit-linear-gradient(var(--settings-dropdown-gradient));
   background: linear-gradient(var(--settings-dropdown-gradient));
@@ -111,10 +137,16 @@ div.settings-dropdown.show {
 .hero-text h1 {
   margin-top: 25px;
   padding-top: 10px;
-  font-size: 4rem;
-  font-weight: 700;
+  font-size: 4.5rem;
+  font-weight: 900;
+  font-family: "JetBrains Mono";
   /* background-color: #333333; */
-  background-image: linear-gradient(132deg, var(--hero-gold-color) 0%, var(--pico-contrast) 35%, var(--pico-contrast-hover) 100%);
+  background-image: linear-gradient(
+    132deg,
+    var(--hero-gold-color) 0%,
+    var(--pico-contrast) 35%,
+    var(--pico-contrast-hover) 100%
+  );
   background-clip: text;
   -moz-background-clip: text;
   -webkit-background-clip: text;
@@ -178,7 +210,7 @@ article.card-full span {
 .cursor-dot {
   width: 5px;
   height: 5px;
-  /* background-color: var(--pico-contrast); */
+  background-color: var(--pico-contrast);
 }
 
 .cursor-outline {
@@ -188,11 +220,10 @@ article.card-full span {
   border: 2px solid color-mix(in srgb, var(--pico-contrast-hover-background), transparent 30%);
   /* background-color: #ffffff60; */
   background-color: color-mix(in srgb, var(--pico-contrast-hover-background), transparent 50%);
-  /* transition: all 0.5s ease; */
-  transition: transform 0.1s ease-out;
   transition-property: background-color, width, height, transform, opacity, border, border-color;
   transition-duration: 0.05s;
   transition-timing-function: ease-out;
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
   mix-blend-mode: soft-light;
 }
 
@@ -202,15 +233,23 @@ article.card-full span {
   top: -100px;
   left: -100px;
   transform: translate(-50%, -50%);
+
   border-radius: 50%;
-  z-index: 100;
+  z-index: 10000;
   transform-origin: center center;
   pointer-events: none;
+
+  opacity: 0;
+}
+
+body:hover > .cursor-outline {
+  opacity: 1;
 }
 
 .cursor-outline.cursor-grow,
 .cursor-outline.grow-small {
   transform: scale(5);
+  -webkit-transform: scale(5);
   background-color: var(--pico-contrast-hover);
   border: none;
 }
@@ -225,9 +264,30 @@ article.card-full span {
 }
 
 .cursor-outline.cursor-wrap {
+  transition-property: transform, background-color;
+  transition-duration: 0.5s;
+
+  animation-name: cursor-wrap-animation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+
   background-color: transparent;
   border: none;
   color: var(--pico-contrast-hover);
+}
+
+@keyframes cursor-wrap-animation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(50);
+  }
 }
 
 .cursor-outline.cursor-text,
@@ -287,6 +347,10 @@ article.card-full span {
 .button-cursor {
   cursor: none;
   transition: all 0.2s ease;
+}
+
+.card-cursor {
+  cursor: none;
 }
 
 .text-cursor {

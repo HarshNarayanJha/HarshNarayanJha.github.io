@@ -4,58 +4,15 @@ const cursorOutline = document.querySelector("[data-cursor-outline]")
 // Thinks which react to cursor
 const scaleCursorElems = document.querySelectorAll(".scale-cursor")
 const buttonCursorElems = document.querySelectorAll(".button-cursor")
+const cardCursorElems = document.querySelectorAll(".card-cursor")
 const linkCursorElems = document.querySelectorAll(".link-cursor")
 const textCursorElems = document.querySelectorAll(".text-cursor")
 
-const settingsButton = document.querySelector("#settings-icon")
-const settingsDropdown = document.querySelector(".settings-dropdown")
-
-const darkModeSwitch = settingsDropdown.querySelector("input[name='dark-mode']")
-
-settingsButton.addEventListener("click", () => {
-  settingsDropdown.classList.toggle("show")
-})
-
-// const svgCircuit = document.querySelector("#circuit");
-
-const setDarkMode = on => {
-  if (on) {
-    document.querySelector("html").dataset.theme = "dark"
-    darkModeSwitch.checked = true
-  } else {
-    document.querySelector("html").dataset.theme = "light"
-    darkModeSwitch.checked = false
-  }
-}
-
-const toggleDarkMode = () => {
-  if (document.querySelector("html").dataset.theme == "dark") {
-    setDarkMode(false)
-  } else {
-    setDarkMode(true)
-  }
-}
-
-// Dark Light Mode Shortcut
-window.addEventListener("keydown", e => {
-  if (e.shiftKey && e.key === "D") {
-    if (e.defaultPrevented) {
-      return // Do nothing if the event was already processed
-    }
-
-    toggleDarkMode()
-  }
-})
-
-darkModeSwitch.addEventListener("change", e => {
-  const darkModeOn = e.target.checked
-  setDarkMode(darkModeOn)
-})
-
+// Cursor
 window.addEventListener("keydown", e => {
   if (e.key === "Control") {
     document.body.style.cursor = "unset"
-    document.querySelector(".cursor-link").style.cursor = "unset"
+    document.querySelector(".link-cursor").style.cursor = "unset"
     document.querySelector(".cursor-outline").style.opacity = 0
   }
 })
@@ -94,6 +51,7 @@ gsap.to({}, 0.016, {
   },
 })
 
+// Cursor Reactions
 scaleCursorElems.forEach(scaled => {
   scaled.addEventListener("mouseleave", e => {
     cursorOutline.classList.remove("cursor-grow")
@@ -132,18 +90,10 @@ linkCursorElems.forEach(link => {
     cursorOutline.classList.add("cursor-glow")
     link.classList.add("text-glow")
 
-    const offsetX =
-      e.clientX -
-      link.getBoundingClientRect().x -
-      link.getBoundingClientRect().height / 2
-    const offsetY =
-      e.clientY -
-      link.getBoundingClientRect().y -
-      link.getBoundingClientRect().width / 2
+    const offsetX = e.clientX - link.getBoundingClientRect().x - link.getBoundingClientRect().height / 2
+    const offsetY = e.clientY - link.getBoundingClientRect().y - link.getBoundingClientRect().width / 2
 
-    link.style.transform = `scale(0.9) translate(${offsetX / 1.5}%, ${
-      offsetY / 1.5
-    }%)`
+    link.style.transform = `scale(0.9) translate(${offsetX / 1.5}%, ${offsetY / 1.5}%)`
   })
 })
 
@@ -155,6 +105,16 @@ buttonCursorElems.forEach(buttoned => {
   buttoned.addEventListener("mouseenter", e => {
     cursorOutline.classList.add("cursor-wrap")
     buttoned.classList.add("text-glow")
+    // }
+  })
+})
+
+cardCursorElems.forEach(card => {
+  card.addEventListener("mouseleave", e => {
+    cursorOutline.classList.remove("cursor-wrap")
+  })
+  card.addEventListener("mouseenter", e => {
+    cursorOutline.classList.add("cursor-wrap")
     // }
   })
 })
