@@ -39,7 +39,7 @@
         </ul>
         <ul>
           <li>
-            <strong id="nav-brand" class="text-cursor small" aria-label="Website Link">harshnj.is-a.dev</strong>
+            <strong id="nav-brand" class="text-cursor small text-center" aria-label="Website Link">harshnj.is-a.dev</strong>
           </li>
         </ul>
         <ul>
@@ -104,16 +104,31 @@
           </h2>
         </div>
         <article class="card-hello card-cursor">
-          <h1 class="text-cursor">Hello 👋</h1>
-          <p class="text-cursor small">This is my personal website aka portfolio, which is WIP 🚧</p>
-          <p class="text-cursor small">
-            As of now you can see Scroll Animations if you scroll down (and up)! And try to wiggle the links on the top
-            right!
-          </p>
+          <div class="card-img">
+            <img src="img/me.png" class="" alt="Harsh's profile picture" width="400px" height="400px" />
+          </div>
+          <div class="card-text">
+            <h1>
+              Hello
+              <picture>
+                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp" type="image/webp" />
+                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif" alt="👋" width="40" height="40" />
+              </picture>
+            </h1>
+            <p>
+              Welcome to my personal website. It represents me and my work. You will find all sorts of projects that I made
+              right here &ShortDownArrow;
+            </p>
+            <p>
+              This is written in plain old html css and javascript. I decided not to use any modern framework because
+              sometimes it's sufficient just to use basic things, and this is best to show off my web skills, since
+              <i>anyone</i> can use frameworks. <sup>1</sup>
+            </p>
+          </div>
         </article>
       </section>
 
-      <section id="section-education">
+      <!-- <section id="section-education">
         <h1 class="text-cursor">Education 🎓</h1>
         <div class="educations">
           <article class="card-full card-past card-cursor">
@@ -143,11 +158,90 @@
             <span>2027 to <i>some year</i></span>
           </article>
         </div>
-      </section>
+      </section> -->
 
       <section id="section-project">
         <h1>Projects 🛠</h1>
-        <p></p>
+
+        <div class="projects">
+          <article class="project-card" data-to="https:/echo-notepad.netlify.app">
+            <div class="project-title">
+              <!-- <img src="img/instasolve.png" /> -->
+              <h2 class="name">Echo - Notepad</h2>
+              <p class="description">Realtime Private notepad for you and your friends to write in sync</p>
+            </div>
+            <div class="info">
+              <div class="tags">
+                <kbd class="badge">VueJS</kbd>
+                <kbd class="badge">SocketIO</kbd>
+                <kbd class="badge">Javascript</kbd>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-to="https://pkdermacorner.pythonanywhere.com">
+            <div class="project-title">
+              <!-- <img src="img/instasolve.png" /> -->
+              <h2 class="name">Pkdermacorner</h2>
+              <p class="description">Business website for a doctor</p>
+            </div>
+            <div class="info">
+              <div class="tags">
+                <kbd class="badge">Python</kbd>
+                <kbd class="badge">Django</kbd>
+                <kbd class="badge">Web</kbd>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-to="https://github.com/HarshNarayanJha/Insta-Solve">
+            <div class="project-title">
+              <img src="img/instasolve.png" />
+              <h2 class="name">Instasolve</h2>
+              <p class="description">AI powered app to solve any question within seconds</p>
+            </div>
+            <div class="info">
+              <div class="tags">
+                <kbd class="badge">Flutter</kbd>
+                <kbd class="badge">Dart</kbd>
+                <kbd class="badge">Gemini API</kbd>
+                <kbd class="badge">App</kbd>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-to="https://pyqnow.netlify.app">
+            <div class="project-title">
+              <img src="img/pyqnow.png" />
+              <h2 class="name">PyqNOW</h2>
+              <p class="description">Simple App in Vue to help index and quickly open PYQ papers of my college</p>
+            </div>
+            <div class="info">
+              <div class="tags">
+                <kbd class="badge">VueJS</kbd>
+                <kbd class="badge">NodeJS</kbd>
+                <kbd class="badge">Javascript</kbd>
+                <kbd class="badge">Web Scrapping</kbd>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-to="https://github.com/HarshNarayanJha/School-Management-Project">
+            <div class="project-title">
+              <!-- <img src="img/instasolve.png" /> -->
+              <h2 class="name">School Management Project</h2>
+              <p class="description">AI powered app to solve any question within seconds</p>
+            </div>
+            <div class="info">
+              <div class="tags">
+                <kbd class="badge">Djnago</kbd>
+                <kbd class="badge">Python</kbd>
+                <kbd class="badge">DRF</kbd>
+              </div>
+            </div>
+          </article>
+        </div>
+        <hr />
         <p>
           Find all of my
           <a
@@ -158,8 +252,7 @@
           >
           in no particular order.
         </p>
-        <p><b>Current Latest Project: </b><a href="https://harshnj.is-a.dev/instasolve">Insta Solve</a></p>
-        <i class="text-muted">Others will appear here soon, I am working on it.</i>
+        <!-- <p><b>Current Latest Project: </b><a href="https://harshnj.is-a.dev/instasolve">Insta Solve</a></p> -->
       </section>
 
       <section id="section-contact">
@@ -173,6 +266,15 @@
     </main>
 
     <footer class="container-fluid">
+      <div class="container footnotes text-extra-muted font-small">
+        <ol>
+          <li>
+            Yes I did use <a href="#" target="_blank">PicoCSS</a>, <a href="#" target="_blank">GSAP</a>,
+            <a href="#" target="_blank">Lenis</a>, <a href="#" target="_blank">BoxIcons</a> and
+            <a href="#" target="_blank">Animate.css</a>, because reinventing the wheel is not always a good idea!
+          </li>
+        </ol>
+      </div>
       <section>
         <nav class="container">
           <ul>

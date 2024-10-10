@@ -17,3 +17,12 @@ cards.forEach(card => {
     handleCardGlow(e)
   })
 })
+
+// Project Card
+const projectCards = document.querySelectorAll("article.project-card")
+projectCards.forEach(card => {
+  card.addEventListener('click', e => {
+    const url = card.dataset.to;
+    window.open(url, '_blank').focus()
+  })
+})

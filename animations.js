@@ -28,32 +28,34 @@ scrollTimeline.from("article.card-hello", {
   x: "-100%",
 })
 
-// Education Horizontal Scroll
+////// Education Horizontal Scroll
 
 const educations = document.querySelector("div.educations")
 
-function getEducationScrollAmount() {
-  let educationsWidth = educations.scrollWidth
-  return -(educationsWidth - window.innerWidth / 1.3)
+if (educations) {
+  function getEducationScrollAmount() {
+    let educationsWidth = educations.scrollWidth
+    return -(educationsWidth - window.innerWidth / 1.5)
+  }
+
+  const educationsAnimation = gsap.to(educations, {
+    x: getEducationScrollAmount,
+    duration: 3,
+    ease: "none",
+  })
+
+  ScrollTrigger.create({
+    trigger: "section#section-education",
+    start: "top 20%",
+    end: () => `+=${getEducationScrollAmount() * -1}`,
+    pin: true,
+    animation: educationsAnimation,
+    scrub: 2,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    markers: false,
+  })
 }
-
-const educationsAnimation = gsap.to(educations, {
-  x: getEducationScrollAmount,
-  duration: 3,
-  ease: "none",
-})
-
-ScrollTrigger.create({
-  trigger: "section#section-education",
-  start: "top 20%",
-  end: () => `+=${getEducationScrollAmount() * -1}`,
-  pin: true,
-  animation: educationsAnimation,
-  scrub: 2,
-  anticipatePin: 1,
-  invalidateOnRefresh: true,
-  markers: false,
-})
 
 // Typer
 

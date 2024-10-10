@@ -1,7 +1,7 @@
 const cursorDot = document.querySelector("[data-cursor-dot]")
 const cursorOutline = document.querySelector("[data-cursor-outline]")
 
-// Thinks which react to cursor
+// Things which react to cursor
 const scaleCursorElems = document.querySelectorAll(".scale-cursor")
 const buttonCursorElems = document.querySelectorAll(".button-cursor")
 const cardCursorElems = document.querySelectorAll(".card-cursor")
