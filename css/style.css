@@ -43,10 +43,8 @@ section {
   /* scroll-margin-top: 150px; */
 }
 
-footer > section {
-  min-height: 0;
-  /* scroll-snap-align: end; */
-  /* scroll-margin-bottom: 75px; */
+section:not(first) {
+  margin-top: 10em;
 }
 
 a {
