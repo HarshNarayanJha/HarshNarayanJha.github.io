@@ -1,1 +1,0 @@
-{"id":"cfc44b41-654f-4186-ad7c-68a3d3318ee3","timestamp":1744225400053,"matcher":{"static":{"/api/content/education/database.sql":{"prerender":true},"/api/content/work/database.sql":{"prerender":true},"/api/content/project/database.sql":{"prerender":true}},"wildcard":{},"dynamic":{}},"prerendered":["/"]}
