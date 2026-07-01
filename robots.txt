@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /resume.pdf
+Disallow: /my-public-key.asc
 
 Sitemap: https://harshnj.is-a.dev/sitemap-index.xml
